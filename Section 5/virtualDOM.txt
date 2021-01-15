@@ -1,0 +1,5 @@
+/********* VIRTUAL DOM ************/
+El virtual dom es una copia del dom real que utiliza vue js para actualizar determinados elementos en pantalla.
+
+funciona de la siguiente manera:
+vue js hace una copia del rom real y luego cuando detecta un cambio en el virtual dom entonces lo actualiza (virtual dom), por ultimo vue hace una comparacion del virtual dom con el dom real y actuliza este ultimo de acuerdo a las diferencias qeu tiene con el virtual dom.
