@@ -1,16 +1,18 @@
 <template>
   <li>
-    <h2>{{ name }} {{ friendIsFavorite === '1' ? '(Favorite)' : ''}}</h2>
+    <h2>{{ friendInfo.name }} {{ isFavorite ? '(Favorite)' : '' }}</h2>
     <button @click="toggleFavorite">Toggle Favorite</button>
-    <button @click="toggleDetails">{{ detailsAreVisible ? 'Hide' : 'Show' }} Details</button>
+    <button @click="toggleDetails">
+      {{ detailsAreVisible ? 'Hide' : 'Show' }} Details
+    </button>
     <ul v-if="detailsAreVisible">
       <li>
         <strong>Phone:</strong>
-        {{ phoneNumber }}
+        {{ friendInfo.phone }}
       </li>
       <li>
         <strong>Email:</strong>
-        {{ emailAddress }}
+        {{ friendInfo.email }}
       </li>
     </ul>
   </li>
@@ -20,37 +22,22 @@
 export default {
   // props: ['name', 'phoneNumber', 'emailAddress', 'isFavorite'],
   props: {
-    name: {
-      type: String,
-      required: true,
-    },
-    phoneNumber: {
-      type: String,
-      required: true
-    },
-    emailAddress: {
-      type: String,
-      required: true
-    },
-    isFavorite: {
-      type: String,
-      required: false,
-      default: '0',
-      validator: function(value) {
-        return value === '1' || value === '0';
-      }
+    friendInfo: Object,
+    isFavorite: Boolean,
+  },
+
+  // documentar los eventos que se emitiran y tambien se puede declara una funcion para determinar los datas que se van a enviar
+  //emits: ['toggle-favorite'], //* metodo 1
+  emits: {
+    // metodo 2
+    'toggle-favorite': function (friend) {
+      return friend ? friend : null;
     },
   },
+
   data() {
     return {
       detailsAreVisible: false,
-      friend: {
-        id: 'manuel',
-        name: 'Manuel Lorenz',
-        phone: '0123 45678 90',
-        email: 'manuel@localhost.com',
-      },
-      friendIsFavorite: this.isFavorite,
     };
   },
   methods: {
@@ -58,11 +45,8 @@ export default {
       this.detailsAreVisible = !this.detailsAreVisible;
     },
     toggleFavorite() {
-      if (this.friendIsFavorite === '1') {
-        this.friendIsFavorite = '0';
-      } else {
-        this.friendIsFavorite = '1';
-      }
+      // emite un evento que luego se puede usar desde el componente padre
+      this.$emit('toggle-favorite', this.friendInfo); // event name and any params
     },
   },
 };

@@ -5,15 +5,11 @@
     </header>
     <ul>
       <friend-contact
-        name="Manuel Lorenz"
-        phone-number="01234 78992"
-        email-address="manuel@localhost.com"
-        is-favorite="1"
-      ></friend-contact>
-      <friend-contact
-        name="Julie Jones"
-        phone-number="0987 65431"
-        email-address="julie@localhost.com"
+        v-for="value in friends"
+        :key="value.id"
+        :friend-info="value"
+        :is-favorite="value.isFavorite"
+        @toggle-favorite="toggleFavoriteStatus"
       ></friend-contact>
     </ul>
   </section>
@@ -25,19 +21,30 @@ export default {
     return {
       friends: [
         {
-          id: "manuel",
-          name: "Manuel Lorenz",
-          phone: "0123 45678 90",
-          email: "manuel@localhost.com",
+          id: 'manuel',
+          name: 'Manuel Lorenz',
+          phone: '0123 45678 90',
+          email: 'manuel@localhost.com',
+          isFavorite: false,
         },
         {
-          id: "julie",
-          name: "Julie Jones",
-          phone: "0987 654421 21",
-          email: "julie@localhost.com",
+          id: 'julie',
+          name: 'Julie Jones',
+          phone: '0987 654421 21',
+          email: 'julie@localhost.com',
+          isFavorite: false,
         },
       ],
     };
+  },
+
+  methods: {
+    //* recibe los datos que son emitidos del componenete hijo
+    toggleFavoriteStatus({ id }) {
+      // vue detecta automaticamente que se hizo una modificacion y actualiza el objeto
+      const idFriend = this.friends.find((friend) => friend.id === id);
+      idFriend.isFavorite = !idFriend.isFavorite;
+    },
   },
 };
 </script>
@@ -47,7 +54,7 @@ export default {
   box-sizing: border-box;
 }
 html {
-  font-family: "Jost", sans-serif;
+  font-family: 'Jost', sans-serif;
 }
 body {
   margin: 0;
