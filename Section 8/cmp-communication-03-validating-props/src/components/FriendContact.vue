@@ -2,9 +2,16 @@
   <li>
     <h2>{{ friendInfo.name }} {{ isFavorite ? '(Favorite)' : '' }}</h2>
     <button @click="toggleFavorite">Toggle Favorite</button>
+
     <button @click="toggleDetails">
       {{ detailsAreVisible ? 'Hide' : 'Show' }} Details
     </button>
+
+    <!-- Otra forma de emitir  en el template -->
+    <button @click="$emit('delete-contact', friendInfo.id)">
+      Delete Contact
+    </button>
+
     <ul v-if="detailsAreVisible">
       <li>
         <strong>Phone:</strong>
@@ -33,6 +40,9 @@ export default {
     'toggle-favorite': function (friend) {
       return friend ? friend : null;
     },
+    'delete-contact': function (id) {
+      return id;
+    },
   },
 
   data() {
@@ -48,6 +58,10 @@ export default {
       // emite un evento que luego se puede usar desde el componente padre
       this.$emit('toggle-favorite', this.friendInfo); // event name and any params
     },
+
+    // deleteContact(id) {
+    //   this.$emit('delete-contact', id);
+    // },
   },
 };
 </script>

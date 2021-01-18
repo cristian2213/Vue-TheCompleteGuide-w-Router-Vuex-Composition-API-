@@ -3,6 +3,12 @@
     <header>
       <h1>My Friends</h1>
     </header>
+
+    <div>
+      <!-- vue component -->
+      <new-friend @form-info="addFriend"></new-friend>
+    </div>
+
     <ul>
       <friend-contact
         v-for="value in friends"
@@ -10,6 +16,7 @@
         :friend-info="value"
         :is-favorite="value.isFavorite"
         @toggle-favorite="toggleFavoriteStatus"
+        @delete-contact="deleteFriend"
       ></friend-contact>
     </ul>
   </section>
@@ -44,6 +51,20 @@ export default {
       // vue detecta automaticamente que se hizo una modificacion y actualiza el objeto
       const idFriend = this.friends.find((friend) => friend.id === id);
       idFriend.isFavorite = !idFriend.isFavorite;
+    },
+
+    addFriend(formInfo) {
+      const newFriend = {
+        ...formInfo,
+        ...{ id: toString(Date.now()), isFavorite: false },
+      };
+
+      this.friends.push(newFriend);
+    },
+
+    deleteFriend(id) {
+      console.log(id);
+      this.friends = this.friends.filter((friend) => friend.id !== id);
     },
   },
 };

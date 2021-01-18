@@ -4,8 +4,18 @@
       <h1>My Friends</h1>
     </header>
     <ul>
-      <friend-contact></friend-contact>
-      <friend-contact></friend-contact>
+      <!-- declaring a component and adding data -->
+      <friend-contact
+        name="Manuel Lopes"
+        phone-number="0123321 123123"
+        email-address="manuel@localhost.com"
+        is-favorite="isFavorite"
+      ></friend-contact>
+      <friend-contact
+        name="Juliejone"
+        phone-number="31221 7573"
+        email-address="julie@localhost.com"
+      ></friend-contact>
     </ul>
   </section>
 </template>
@@ -14,6 +24,7 @@
 export default {
   data() {
     return {
+      isFavorite: false,
       friends: [
         {
           id: "manuel",
