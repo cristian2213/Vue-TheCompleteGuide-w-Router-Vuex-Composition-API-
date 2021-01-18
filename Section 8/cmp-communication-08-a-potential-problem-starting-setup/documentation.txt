@@ -1,0 +1,1 @@
+// para pasar datos entre componentes se hace a traves de un provaider que los emite y una inject que es el que los recibe, solo se puede recibir datos de un componente padre hacia el hijo, de componentes hijos no se puede

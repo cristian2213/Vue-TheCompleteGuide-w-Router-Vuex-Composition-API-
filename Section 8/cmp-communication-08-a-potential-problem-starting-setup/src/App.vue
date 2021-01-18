@@ -4,7 +4,8 @@
       :topic-title="activeTopic && activeTopic.title"
       :text="activeTopic && activeTopic.fullText"
     ></active-element>
-    <knowledge-base :topics="topics" @select-topic="activateTopic"></knowledge-base>
+
+    <knowledge-base></knowledge-base>
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 export default {
   data() {
     return {
+      activeTopic: null,
       topics: [
         {
           id: 'basics',
@@ -29,13 +31,33 @@ export default {
             'With components, you can split logic (and markup) into separate building blocks and then combine those building blocks (and re-use them) to build powerful user interfaces.',
         },
       ],
-      activeTopic: null,
     };
   },
+
+  //* Proporcionar datos, funciona como propiedad y como metodo */
+  provide() {
+    return {
+      topics: this.topics,
+      selectTopic: this.activateTopic,
+    };
+  },
+
   methods: {
     activateTopic(topicId) {
       this.activeTopic = this.topics.find((topic) => topic.id === topicId);
     },
+  },
+
+  /* Metodo del ciclo de vida  */
+  mounted() {
+    setTimeout(() => {
+      this.topics.push({
+        id: 'events',
+        title: 'Events',
+        description: 'Events are important in Vue',
+        fullText: 'Events allow you to trigger code on demand!',
+      });
+    }, 3000);
   },
 };
 </script>
