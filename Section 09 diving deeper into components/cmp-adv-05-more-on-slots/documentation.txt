@@ -1,0 +1,1 @@
+Slot: cuando se aplica estilos a un componente con scoped y en ese mismo componente estamos utilizando un slot para renderizar contenido en otro componente, en estos casos se debe de tener en cuenta que los estilos se aplicaran al componente base y no al componente con el slot
