@@ -1,12 +1,12 @@
 <template>
   <ul>
-    <li :class="{active: modelValue === 'poor'}">
+    <li :class="{ active: modelValue === 'poor' }">
       <button type="button" @click="activate('poor')">Poor</button>
     </li>
-    <li :class="{active: modelValue === 'average'}">
+    <li :class="{ active: modelValue === 'average' }">
       <button type="button" @click="activate('average')">Average</button>
     </li>
-    <li :class="{active: modelValue === 'great'}">
+    <li :class="{ active: modelValue === 'great' }">
       <button type="button" @click="activate('great')">Great</button>
     </li>
   </ul>
@@ -14,8 +14,12 @@
 
 <script>
 export default {
-  props: ['modelValue'],
-  emits: ['update:modelValue'],
+  props: [
+    'modelValue',
+  ] /* este es un prop especial que recibe el componente para poder enlazar con el v-model */,
+  emits: [
+    'update:modelValue',
+  ] /* EVENTO especifico que se debe emitr para que vue internamente tome los nuevos valores y los actualice en el componente principal */,
   // data() {
   //   return {
   //     activeOption: this.modelValue,
@@ -28,6 +32,7 @@ export default {
   // },
   methods: {
     activate(option) {
+      // emitir el dato actualizado para que el data del v-model se actualice
       this.$emit('update:modelValue', option);
     },
   },
