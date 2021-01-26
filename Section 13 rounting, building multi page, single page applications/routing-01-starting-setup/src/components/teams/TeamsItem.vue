@@ -2,13 +2,40 @@
   <li>
     <h3>{{ name }}</h3>
     <div class="team-members">{{ memberCount }} Members</div>
-    <a href="#">View Members</a>
+    <!-- se manda a llamar una propiedad computada, porque es recomendable no tener logica en la vista -->
+    <router-link :to="teamMembersLink">View Members</router-link>
   </li>
 </template>
 
 <script>
 export default {
-  props: ['name', 'memberCount'],
+  props: ['id', 'name', 'memberCount'],
+  computed: {
+    teamMembersLink() {
+      //* Forma #1
+      //return '/teams/' + this.id; //this.id = t1 || t2 || t3
+      //* Forma #2
+      //return {
+      //  path: '/teams/' + this.id,
+      //};
+      //* Forma #3, llamando a la ruta por medio del nombre y pasando los valores dinamicos a traves de los parametros como clave y valor
+      return {
+        // return 'teams/' + this.id + '?sort=asc'
+        name: 'team-members',
+        params: { teamId: this.id },
+        // parametros de consulta, son opcionales por lo tanto no se deben agregar a la configuracion de rutas
+        query: { sort: 'asc' },
+      };
+
+      //* Forma #4, Navegar mediante programacion
+      //this.$router.push(
+      //  {
+      //    name: 'team-members',
+      //    params: { teamId: this.id
+      //  }
+      //);
+    },
+  },
 };
 </script>
 
