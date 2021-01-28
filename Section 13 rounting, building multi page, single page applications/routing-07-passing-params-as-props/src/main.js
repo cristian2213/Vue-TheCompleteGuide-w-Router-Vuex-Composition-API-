@@ -11,9 +11,9 @@ const router = createRouter({
   routes: [
     { path: '/teams', component: TeamsList }, // our-domain.com/teams => TeamsList
     { path: '/users', component: UsersList },
-    { path: '/teams/:teamId', component: TeamMembers, props: true }
+    { path: '/teams/:teamId', component: TeamMembers, props: true }, // habilitar los props dinamicos, para poder pasar parametros como props
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
 });
 
 const app = createApp(App);

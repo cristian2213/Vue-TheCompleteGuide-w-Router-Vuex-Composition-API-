@@ -22,27 +22,33 @@ const router = createRouter({
           name: 'team-members',
           path: ':teamId',
           component: TeamMembers,
-          props: true
-        } // /teams/t1
-      ]
+          props: true,
+        }, // /teams/t1
+      ],
     }, // our-domain.com/teams => TeamsList
     {
       path: '/users',
       components: {
         default: UsersList,
-        footer: UsersFooter
-      }
+        footer: UsersFooter,
+      },
+      // proteger una sola ruta
+      beforeEnter: (to, from, next) => {
+        console.log(to, from, next);
+      },
     },
-    { path: '/:notFound(.*)', component: NotFound }
+    { path: '/:notFound(.*)', component: NotFound },
   ],
   linkActiveClass: 'active',
+
+  // metodo para localizar la posicion de la pantalla
   scrollBehavior(to, from, savedPosition) {
-    console.log(to, from, savedPosition);
-    if (savedPosition) {
-      return savedPosition;
-    }
-    return { left: 0, top: 0 };
-  }
+    //console.log(to, from, savedPosition);
+    //if (savedPosition) {
+    //  return savedPosition;
+    //}
+    return { left: 0, top: 0 }; // siempre va a retornar un objeto con estas dos propiedades
+  },
 });
 
 const app = createApp(App);

@@ -18,7 +18,7 @@ import UserItem from '../users/UserItem.vue';
 
 export default {
   inject: ['users', 'teams'],
-  props: ['teamId'],
+  props: ['teamId'], // recibiendo el prop por parametro
   components: {
     UserItem,
   },

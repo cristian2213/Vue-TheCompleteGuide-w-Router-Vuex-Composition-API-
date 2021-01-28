@@ -10,10 +10,11 @@
 export default {
   props: ['id', 'name', 'memberCount'],
   computed: {
+    // metodo para ruta dinamica
     teamMembersLink() {
       return '/teams/' + this.id;
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -4,6 +4,7 @@
     <router-view></router-view>
   </main>
   <footer>
+    <!-- este nombre pertenece a la propiedad en la configuracion de rutas -->
     <router-view name="footer"></router-view>
   </footer>
 </template>
@@ -13,7 +14,7 @@ import TheNavigation from './components/nav/TheNavigation.vue';
 
 export default {
   components: {
-    TheNavigation
+    TheNavigation,
   },
   data() {
     return {
@@ -36,7 +37,7 @@ export default {
       teams: this.teams,
       users: this.users,
     };
-  }
+  },
 };
 </script>
 

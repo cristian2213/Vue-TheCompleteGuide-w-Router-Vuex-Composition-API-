@@ -15,7 +15,7 @@ export default {
       return {
         name: 'team-members',
         params: { teamId: this.id },
-        query: { sort: 'asc' },
+        query: { sort: 'asc' }, // el query es opcional
       };
       // this.$router.push({ name: 'team-members', params: { teamId: this.id } });
     },

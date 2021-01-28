@@ -22,23 +22,25 @@ const router = createRouter({
           name: 'team-members',
           path: ':teamId',
           component: TeamMembers,
-          props: true
-        } // /teams/t1
-      ]
+          props: true,
+        }, // /teams/t1
+      ],
     }, // our-domain.com/teams => TeamsList
     {
       path: '/users',
       components: {
         default: UsersList,
-        footer: UsersFooter
+        footer: UsersFooter,
       },
+
+      // proteger rutas individuales
       beforeEnter(to, from, next) {
         console.log('users beforeEnter');
         console.log(to, from);
         next();
-      }
+      },
     },
-    { path: '/:notFound(.*)', component: NotFound }
+    { path: '/:notFound(.*)', component: NotFound },
   ],
   linkActiveClass: 'active',
   scrollBehavior(_, _2, savedPosition) {
@@ -47,21 +49,24 @@ const router = createRouter({
       return savedPosition;
     }
     return { left: 0, top: 0 };
-  }
+  },
 });
 
-router.beforeEach(function(to, from, next) {
-  console.log('Global beforeEach');
-  console.log(to, from);
-  // if (to.name === 'team-members') {
-  //   next();
-  // } else {
-  //   next({ name: 'team-members', params: { teamId: 't2' } });
-  // }
-  next();
-});
+// este metodo sera llamado cada vez que se navegue entre las rutas, y evaluara todas las rutas
+//router.beforeEach(function (to, from, next) {
+//console.log('Global beforeEach');
+//console.log(to, from);
+// if (to.name === 'team-members') { // validar que no se redirige a la misma ruta porque se produce un blucle infinito
+//   next();// permite la navegacion, autoriza que el usuario vea la rutas
+//   next(false);// permite cancelar la navegacion
+// } else {
+//   next({ name: 'team-members', params: { teamId: 't2' } });// ruta a la que desea navegar pasando un objeto
+//   next('/teams');// ruta a la que desea navegar
+// }
+//   next();
+// });
 
-router.afterEach(function(to, from) {
+router.afterEach(function (to, from) {
   // sending analytics data
   console.log('Global afterEach');
   console.log(to, from);

@@ -11,10 +11,10 @@ const router = createRouter({
     { path: '/teams', component: TeamsList }, // our-domain.com/teams => TeamsList
     { path: '/users', component: UsersList },
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active', // para cambiar las clases que viene por defecto
 });
 
-const app = createApp(App)
+const app = createApp(App);
 
 app.use(router);
 

@@ -16,26 +16,26 @@ const router = createRouter({
     {
       name: 'teams',
       path: '/teams',
-      components: { default: TeamsList, footer: TeamsFooter },
+      components: { default: TeamsList, footer: TeamsFooter }, // renderizando multiples componentes por ruta
       children: [
         {
           name: 'team-members',
           path: ':teamId',
           component: TeamMembers,
-          props: true
-        } // /teams/t1
-      ]
+          props: true,
+        }, // /teams/t1
+      ],
     }, // our-domain.com/teams => TeamsList
     {
       path: '/users',
       components: {
         default: UsersList,
-        footer: UsersFooter
-      }
+        footer: UsersFooter,
+      },
     },
-    { path: '/:notFound(.*)', component: NotFound }
+    { path: '/:notFound(.*)', component: NotFound }, // las rutas con un solo componente de renderizaran en la vista por defecto
   ],
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
 });
 
 const app = createApp(App);

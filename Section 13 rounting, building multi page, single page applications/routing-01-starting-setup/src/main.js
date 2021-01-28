@@ -19,6 +19,8 @@ const router = createRouter({
       name: 'teams',
       path: '/teams',
       /* component: TeamsList, */
+      //** Pasando meta campos, en este caso se declara para verificar por medio de un guardia si la ruta necesita autenticacion o no */
+      meta: { needsAuth: true },
 
       //* En una ruta se puede tener mas de un componente, esto sirve para cargar componentes  de distintas sesiones, en este objeto las keys identifican los nombres de las router-views en donde se renderiza cada componente
       components: {
@@ -81,15 +83,18 @@ router.beforeEach((to, from, next) => {
   // next: para confirmar o cancelar la accion de la navegacion
   //console.log(to, from);
 
-  const isAuthenticated = true;
-  if ((to.name !== 'teams' || to.name !== 'users') && !isAuthenticated)
-    next({ name: 'teams' });
-  else next();
+  console.log(to.meta.needsAuth); // return true o false, para verificar si la ruta necesita autenticacion, esto es super util
+  next();
+
+  //const isAuthenticated = true;
+  //if ((to.name !== 'teams' || to.name !== 'users') && !isAuthenticated)
+  //  next({ name: 'teams' });
+  //else next();
 });
 
-// es un guardia globarl y este no permite modificar las rutas
+// es un guardia globar y este no permite modificar las rutas
 router.afterEach((to, from) => {
-  // es util para envirar datos analiticos al servidor
+  // es util para envirar datos analiticos al servidor, se ejecuta despues de la carga de cada ruta
   console.log(to, from);
 });
 

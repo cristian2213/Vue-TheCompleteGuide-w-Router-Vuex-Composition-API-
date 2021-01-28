@@ -58,7 +58,7 @@ export default {
 
   // guardi individual que se ejecuta cuando un componente es reutilizado con nuevos datos (uptualizado)
   beforeRouteUpdate(to, from, next) {
-    console.log(to, from, next);
+    //console.log(to, from, next);
     next();
   },
 

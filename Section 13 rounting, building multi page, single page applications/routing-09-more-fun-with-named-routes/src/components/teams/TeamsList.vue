@@ -1,5 +1,7 @@
 <template>
+  <!-- acá se carga la ruta anidada -->
   <router-view></router-view>
+
   <ul>
     <teams-item
       v-for="team in teams"
