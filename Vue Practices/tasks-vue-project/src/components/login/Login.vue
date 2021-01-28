@@ -1,30 +1,65 @@
 <template>
   <div class="container">
-    <h1 class="title-login">Login</h1>
+    <span class="wrapper-icon">
+      <i class="far fa-address-book far-user--modifier"></i>
+    </span>
+
     <wrapper-form>
       <wrapper-input>
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" />
+        <label for="email" class="label-login">
+          <i class="far fa-envelope"></i>
+        </label>
+
+        <input
+          type="email"
+          name="email"
+          id="email"
+          class="input-login"
+          placeholder="Your Email"
+        />
       </wrapper-input>
 
       <wrapper-input>
-        <label for="password">Password</label>
-        <input type="pass" name="pass" id="pass" />
+        <label for="password" class="label-login">
+          <i class="fas fa-user-lock"></i>
+        </label>
+
+        <input
+          type="password"
+          name="pass"
+          id="pass"
+          class="input-login"
+          placeholder="Your Password"
+        />
       </wrapper-input>
 
-      <wrapper-input>
-        <button>Log in</button>
-      </wrapper-input>
+      <div class="wrapper-buttom">
+        <button class="login-button">Log in</button>
 
-      <router-link to="create_account">Sign in</router-link>
+        <div class="wrapper-checkbox">
+          <input
+            type="checkbox"
+            value="remember"
+            id="remember"
+            class="input-checkbox"
+          />
+          <label for="remember" class="label-checkbox">Remember me</label>
+        </div>
+      </div>
+
+      <router-link to="create_account" class="router-link">Sign in</router-link>
     </wrapper-form>
+    <footer-component></footer-component>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-    return {};
+    return {
+      inputEmailErro: false,
+      inputPasswordError: false,
+    };
   },
 };
 </script>
@@ -38,21 +73,114 @@ export default {
   width: 100%;
   height: 100vh;
   background-image: linear-gradient(
-      to right bottom,
-      rgba(199, 239, 255, 0.8),
-      rgba(125, 160, 163, 0.8)
-    ),
-    url(../../assets/img/background-main.jpg);
-  background-size: cover;
-  background-position: center;
+    220deg,
+    rgba(86, 252, 252, 0.8),
+    rgba(177, 184, 252, 0.8)
+  );
 }
 
-.title-login {
-  padding: 0.5rem 1rem;
-  font-size: 2.3rem;
-  font-family: "Raleway", sans-serif;
-  font-weight: 800;
-  color: #2b5876;
-  border-bottom: 4px solid #1d3f55;
+.far-user--modifier {
+  position: absolute;
+  margin: -1.8rem 0 0 -2rem;
+  padding: 1.3rem;
+  font-size: 3rem;
+  background-color: #07cbca;
+  color: white;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.label-login {
+  width: 70px;
+  height: 50px;
+  background-color: #048f8a;
+  padding: 1rem;
+  text-align: center;
+}
+
+.label-login > .far,
+.label-login > .fas {
+  color: white;
+  font-size: 1.1rem;
+}
+
+.input-login {
+  width: 100%;
+  height: 50px;
+  padding: 1rem;
+  border: none;
+  background-color: #eee;
+}
+
+.input-login:focus {
+  outline: none;
+}
+
+.wrapper-buttom {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.login-button {
+  display: block;
+  padding: 0.8rem 1rem;
+  background-color: #048f8a;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  width: 40%;
+  transform: scale(0.9);
+  transition: background 300ms ease-in, transform 300ms ease-in;
+}
+
+.login-button:focus {
+  outline: none;
+}
+
+.login-button:hover {
+  background-color: #02726e;
+  transform: scale(1);
+}
+
+.wrapper-checkbox {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-checkbox {
+  margin: 0 5px 0 0;
+}
+
+.label-checkbox {
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.router-link {
+  margin: 1rem 0 0 0;
+  font-family: "Raleway";
+  font-weight: 400;
+  color: #048f8a;
+  transition: color 300ms ease-in, text-decoration 300ms ease-in;
+}
+
+.router-link:hover {
+  color: #02726e;
+  text-decoration: underline;
+}
+
+.input-success {
+  color: #048f8a;
+}
+.input-error {
+  color: rgb(232, 8, 8);
 }
 </style>

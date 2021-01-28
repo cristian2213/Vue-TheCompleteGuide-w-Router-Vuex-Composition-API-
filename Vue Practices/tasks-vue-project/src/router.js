@@ -4,7 +4,6 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Login from './components/login/Login.vue';
 import Auth from './components/auth/Auth.vue';
 import Projects from './components/projects/Projects.vue';
-
 import NotFound from './components/NotFound.vue';
 
 const router = createRouter({

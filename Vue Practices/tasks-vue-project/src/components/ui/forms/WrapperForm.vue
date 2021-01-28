@@ -10,17 +10,23 @@ export default {};
 
 <style scoped>
 .login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
   width: 450px;
-  height: 350px;
-  padding: 2rem;
-  background-color: rgba(242, 242, 242, 0.33);
+  height: auto;
+  margin: 1rem 0;
+  padding: 4rem 2rem 2rem 2rem;
+  background-color: white;
+  border-radius: 7px;
+  box-shadow: 8px 8px 7px rgba(68, 68, 68, 0.2);
 }
 
 @media screen and (max-width: 576px) {
   .login-form {
-    background-color: red;
-    width: auto;
-    min-width: 300px;
+    width: 90%;
   }
 }
 </style>
