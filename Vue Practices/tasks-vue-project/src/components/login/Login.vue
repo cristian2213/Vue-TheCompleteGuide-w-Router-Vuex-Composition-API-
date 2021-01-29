@@ -15,7 +15,13 @@
           name="email"
           id="email"
           class="input-login"
+          :class="{
+            'input-error': inputEmailErro,
+            'input-success': !inputEmailErro,
+          }"
           placeholder="Your Email"
+          v-model.trim="infoEmail"
+          @input="validateInfo"
         />
       </wrapper-input>
 
@@ -29,7 +35,13 @@
           name="pass"
           id="pass"
           class="input-login"
+          :class="{
+            'input-error': inputPasswordError,
+            'input-success': !inputPasswordError,
+          }"
           placeholder="Your Password"
+          v-model.number="infoPassword"
+          @input="validateInfo"
         />
       </wrapper-input>
 
@@ -57,9 +69,45 @@
 export default {
   data() {
     return {
+      infoEmail: null,
+      infoPassword: null,
       inputEmailErro: false,
       inputPasswordError: false,
     };
+  },
+
+  methods: {
+    validateInfo(event) {
+      const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      /* 
+        Contraseña incorrecta: debe tener entre 6 y 16 caracteres, al menos un digito, una minúscula, una mayuscula. 
+      */
+      const passRegex = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{6,16}$/;
+
+      switch (event.target.name) {
+        case "email":
+          if (emailRegex.test(this.infoEmail)) {
+            this.inputEmailErro = false;
+            return;
+          }
+          this.inputEmailErro = true;
+          break;
+
+        case "pass":
+          //console.log(typeof this.infoPassword);
+          console.log(this.infoPassword);
+          if (passRegex.test(this.infoPassword)) {
+            this.inputPasswordError = false;
+            return;
+          }
+          this.inputPasswordError = true;
+          break;
+
+        default:
+          console.log("Error");
+          break;
+      }
+    },
   },
 };
 </script>
