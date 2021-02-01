@@ -17,29 +17,10 @@ export default {
   },
   provide() {
     return {
-      cart: this.cart,
-      addProductToCart: this.addProductToCart,
       removeProductFromCart: this.removeProductFromCart,
       login: this.login,
       logout: this.logout,
     };
-  },
-  methods: {
-    removeProductFromCart(prodId) {
-      const productInCartIndex = this.cart.items.findIndex(
-        (cartItem) => cartItem.productId === prodId
-      );
-      const prodData = this.cart.items[productInCartIndex];
-      this.cart.items.splice(productInCartIndex, 1);
-      this.cart.qty -= prodData.qty;
-      this.cart.total -= prodData.price * prodData.qty;
-    },
-    login() {
-      this.isLoggedIn = true;
-    },
-    logout() {
-      this.isLoggedIn = false;
-    },
   },
 };
 </script>

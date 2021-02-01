@@ -22,7 +22,15 @@ export default {
       state.cart.qty++;
       state.cart.total += payload.value.price;
     }
+  },
 
-    console.log(state.cart.items);
+  removeProductFromCart(state, payload) {
+    const productInCartIndex = state.cart.items.findIndex(
+      cartItem => cartItem.productId === payload.value
+    );
+    const prodData = state.cart.items[productInCartIndex];
+    state.cart.items.splice(productInCartIndex, 1);
+    state.cart.qty -= 1;
+    state.cart.total -= prodData.price * prodData.qty;
   }
 };
