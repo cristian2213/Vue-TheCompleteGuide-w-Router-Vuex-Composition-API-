@@ -7,7 +7,9 @@
       <dir class="controls">
         <base-button mode="outline">Refresh</base-button>
         <!-- al declarar solo el nombre del prop, este se paso como valor true al componenete -->
-        <base-button link to="/register">Register as Coach</base-button>
+        <base-button link to="/register" v-if="!isCoach"
+          >Register as Coach</base-button
+        >
       </dir>
       <ul v-if="hasCoaches">
         <coach-item
@@ -46,6 +48,10 @@ export default {
   },
 
   computed: {
+    isCoach() {
+      return this.$store.getters['coaches/isCoach'];
+    },
+
     filteredCoaches() {
       // obtener todos los entrenadores
       const coaches = this.$store.getters['coaches/coaches'];
@@ -83,7 +89,6 @@ export default {
     setFilters(updateFilters) {
       // recribir los valores del filtro
       this.activeFilters = updateFilters;
-      console.log(this.activeFilters);
     },
   },
 };

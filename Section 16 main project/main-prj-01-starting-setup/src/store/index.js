@@ -8,7 +8,15 @@ const store = createStore({
   },
 
   state() {
-    return {};
+    return {
+      userId: 'c3'
+    };
+  },
+
+  getters: {
+    userId(state) {
+      return state.userId;
+    }
   }
 });
 
