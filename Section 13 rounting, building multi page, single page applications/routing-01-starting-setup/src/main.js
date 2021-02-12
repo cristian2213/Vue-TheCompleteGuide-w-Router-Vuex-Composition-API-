@@ -92,7 +92,7 @@ router.beforeEach((to, from, next) => {
   //else next();
 });
 
-// es un guardia globar y este no permite modificar las rutas
+// es un guardia global y este no permite modificar las rutas
 router.afterEach((to, from) => {
   // es util para envirar datos analiticos al servidor, se ejecuta despues de la carga de cada ruta
   console.log(to, from);

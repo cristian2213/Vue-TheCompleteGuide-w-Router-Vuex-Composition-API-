@@ -7,7 +7,7 @@ export default {
     return state.coaches && state.coaches.length > 0; // retorna true o false
   },
 
-  // verificar si se es entrenador o no
+  // verificar si es entrenador o no
   isCoach(state, getters, rootState, rootGetters) {
     //console.log('getters', getters); // local
     //console.log('rootState', rootState); // global
